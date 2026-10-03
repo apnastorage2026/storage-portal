@@ -1,0 +1,16 @@
+[Unit]
+Description=Apna Storage API
+After=network.target postgresql.service
+
+[Service]
+User=apnastorage
+Group=apnastorage
+WorkingDirectory=/opt/apnastorage
+EnvironmentFile=/opt/apnastorage/.env
+ExecStart=/usr/bin/java -jar /opt/apnastorage/storage.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
